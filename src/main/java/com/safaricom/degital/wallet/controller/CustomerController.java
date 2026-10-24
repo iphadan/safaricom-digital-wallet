@@ -4,6 +4,7 @@ import com.safaricom.degital.wallet.dto.CustomerResponse;
 import com.safaricom.degital.wallet.dto.GeneralResponse;
 import com.safaricom.degital.wallet.model.Customer;
 import com.safaricom.degital.wallet.service.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<GeneralResponse<CustomerResponse>> createCustomer(@RequestBody Customer customer){
+    public ResponseEntity<GeneralResponse<CustomerResponse>> createCustomer(@Valid @RequestBody Customer customer){
         return customerService.createCustomer(customer);
     }
 

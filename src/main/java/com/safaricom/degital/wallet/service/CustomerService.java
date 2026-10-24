@@ -39,7 +39,7 @@ public class CustomerService {
        generalResponse.setMessage("Customer Successfully Created");
        generalResponse.setStatus(true);
 
-       return ResponseEntity.ok(generalResponse);
+       return ResponseEntity.status(201).body(generalResponse);
 
 
     }
@@ -50,7 +50,7 @@ public class CustomerService {
             generalResponse.setStatus(true);
             generalResponse.setResult(List.of());
             generalResponse.setMessage("No Record Found");
-            return ResponseEntity.ok(generalResponse);
+            return ResponseEntity.status(203).body(generalResponse);
         }
         List<CustomerResponse> customerResponses = new ArrayList<>();
         for(Customer customer : customers){
@@ -60,7 +60,7 @@ public class CustomerService {
         generalResponse.setMessage("Successfully Fetched");
         generalResponse.setResult(customerResponses);
         generalResponse.setStatus(true);
-        return  ResponseEntity.ok(generalResponse);
+        return  ResponseEntity.status(200).body(generalResponse);
     }
 
     public ResponseEntity<GeneralResponse<CustomerResponse>> getCustomer(Long id){
@@ -69,14 +69,14 @@ public class CustomerService {
         if(customer == null){
 
 
-            return ResponseEntity.ok(new GeneralResponse<>(
+            return ResponseEntity.status(203).body(new GeneralResponse<>(
                     "No Record Found",
                     false,
                     null
             ));
         }
 
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 new GeneralResponse<>(
                         "Successfully Fetched the Record",
                         true,
@@ -92,7 +92,7 @@ public class CustomerService {
         if(customer == null){
 
 
-            return ResponseEntity.ok(new GeneralResponse<>(
+            return ResponseEntity.status(203).body(new GeneralResponse<>(
                     "No Record Found",
                     false,
                     null
@@ -128,7 +128,7 @@ existingCustomer.setEmail(customer.getEmail());
 
         Customer savedCustomer = customerRepo.save(existingCustomer);
 
-        return ResponseEntity.ok(
+        return ResponseEntity.status(201).body(
                 new GeneralResponse<>(
                         "Successfully updated",
                         true,
@@ -144,7 +144,7 @@ existingCustomer.setEmail(customer.getEmail());
         if(tobeDeleted == null){
 
 
-            return ResponseEntity.ok(new GeneralResponse<>(
+            return ResponseEntity.status(203).body(new GeneralResponse<>(
                     "No Record Found",
                     false,
                     null
@@ -152,7 +152,7 @@ existingCustomer.setEmail(customer.getEmail());
         }
         customerRepo.delete(tobeDeleted);
 
-        return ResponseEntity.ok(
+        return ResponseEntity.status(2004).body(
                 new GeneralResponse(
                         "Successfully deleted the customer",
                         true,
