@@ -1,12 +1,11 @@
 package com.safaricom.degital.wallet.dto;
 
-import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +25,7 @@ public class CustomerResponse extends BaseDto{
    this.customerShortName = customerShortName;
    this.gender = gender;
    this.email = email;
+   this.age = age;
    this.phoneNumber = phoneNumber;
 
     }
